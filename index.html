@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Մեղուներ</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         @font-face {
             font-family: "Armenia";
-            src: url(./assets/SHK_Dzeragir.otf);
+            src: url(./assets/ArTarumianBarakU-Bold.ttf);
         }
 
         body {
             margin: 0;
             background-color: #fff7c0;
-            overflow: hidden;
-            background: url(./assets/fl.avif);
+            overflow-x: hidden;
+            background: url(./assets/fl.jpg);
+            background-size: cover;
             font-family: "Armenia";
-            padding: 20px;
-            display: grid;
-            place-content: center center;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
         }
 
         .bee {
@@ -37,25 +46,32 @@
             background-size: contain;
             background-repeat: no-repeat;
             transition: transform 0.1s ease;
-
         }
 
         .invite {
             max-width: 900px;
             padding: 15px 30px;
             border-radius: 20px;
-            background-color: #fff7c0;
-           box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;  background-color: rgba(255, 255, 255, 0.4);
+            box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+                rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+                rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset,
+                rgba(0, 0, 0, 0.06) 0px 2px 1px,
+                rgba(0, 0, 0, 0.09) 0px 4px 2px,
+                rgba(0, 0, 0, 0.09) 0px 8px 4px,
+                rgba(0, 0, 0, 0.09) 0px 16px 8px,
+                rgba(0, 0, 0, 0.09) 0px 32px 16px;
+            background-color: rgba(255, 255, 255, 0.4);
             -webkit-backdrop-filter: blur(5px);
             backdrop-filter: blur(5px);
             margin-top: 200px;
+            position: relative;
         }
 
         h1 {
-
             font-size: 30px;
             color: #646464;
             line-height: 50px;
+            text-align: center;
         }
 
         @media screen and (max-width: 600px) {
@@ -63,50 +79,181 @@
                 margin-top: 100px;
             }
         }
+
+        .one {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .countdown-container {
+            padding: 30px 0;
+            border-radius: 20px;
+            margin-top: auto;
+            width: 100%;
+            box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+                rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+                rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset,
+                rgba(0, 0, 0, 0.06) 0px 2px 1px,
+                rgba(0, 0, 0, 0.09) 0px 4px 2px,
+                rgba(0, 0, 0, 0.09) 0px 8px 4px,
+                rgba(0, 0, 0, 0.09) 0px 16px 8px,
+                rgba(0, 0, 0, 0.09) 0px 32px 16px;
+            background-color: rgba(255, 255, 255, 0.4);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+        }
+
+        .countdownBox {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1200px;
+        }
+
+        .countdown-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #646464;
+        }
+
+        #countdown {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        #countdown p {
+            font-weight: 700;
+            font-size: clamp(3rem, -1.5rem + 10vw, 5rem);
+            margin: 0;
+            color: #333;
+        }
+
+        #countdown span {
+            font-size: clamp(1.5rem, -1.5rem + 8vw, 2.5rem);
+            color: #555;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 100px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="invite">
-        <h1>
-            1ե դասարանը սիրով հրավիրում է Ձեզ ներկա գտնվելու «Դեպի երազանք» խորագիրը կրող միջոցառմանը, որը տեղի կունենա
-            մայիսի 20-ին, ժամը՝ 13:00-ին:
-        </h1>
+    <main>
+        <div class="invite">
+            <h1>
+                <span class="one">1</span>ե դասարանը սիրով հրավիրում է Ձեզ ներկա գտնվելու «Դեպի երազանք» խորագիրը կրող
+                միջոցառմանը, որը տեղի կունենա մայիսի 20-ին, ժամը՝ 13:00-ին:
+            </h1>
+        </div>
+
+        <!-- Մեղուների համար տարածք -->
+        <div id="bees-container" style="flex: 1; position: relative; min-height: 300px;"></div>
+    </main>
+
+    <!-- Հետհաշվարկի հատվածը էջի ներքևում -->
+    <div class="countdown-container">
+        <div class="countdownBox">
+            <h2 class="countdown-title">Միջոցառմանը մնաց՝</h2>
+            <div id="countdown">
+                <div class="countdown-item">
+                    <p id="day">0</p> <span>Օր</span>
+                </div>
+                <div class="countdown-item">
+                    <p id="hours">0</p> <span>Ժամ</span>
+                </div>
+                <div class="countdown-item">
+                    <p id="minutes">0</p> <span>Րոպե</span>
+                </div>
+                <div class="countdown-item">
+                    <p id="seconds">0</p> <span>Վրկ</span>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- <script src="./index.js"></script> -->
+
+    
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const daysElement = document.querySelector('#day');
+    const hoursElement = document.querySelector('#hours');
+    const minutesElement = document.querySelector('#minutes');
+    const secondsElement = document.querySelector('#seconds');
+  
+    const eventDate = new Date(2025, 4, 20, 0, 0);
+  
+    function updateCountdown() {
+      const currentDate = new Date();
+      const diff = eventDate - currentDate;
+  
+      // Եթե ժամանակն ավարտվել է
+      if (diff <= 0) {
+        document.getElementById('countdown-title').textContent = 'Միջոցառումը սկսվել է!';
+        document.getElementById('countdown').style.display = "none"
+        clearInterval(countdownInterval);
+        return;
+      }
+  
+      // Հաշվարկել օրեր, ժամեր, րոպեներ, վայրկյաններ
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  
+      // Թարմացնել ցուցադրումը
+      daysElement.textContent = days;
+      hoursElement.textContent = hours.toString().padStart(2, '0');
+      minutesElement.textContent = minutes.toString().padStart(2, '0');
+      secondsElement.textContent = seconds.toString().padStart(2, '0');
+    }
+  
+    // Սկսել հետհաշվարկը
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown(); // Անմիջապես կանչել առաջին անգամ
+  });
+  let bees = ""
+  for (let i = 0; i < 10; i++) {
+      let bee = `<div class="bee" id="bee${i + 1}"></div>`
+      bees += bee
+  }
+  document.body.innerHTML += bees;
+  function random(min, max) {
+      return Math.random() * (max - min) + min;
+  }
 
-        let bees = ""
-        for (let i = 0; i < 15; i++) {
-            let bee = `<div class="bee" id="bee${i + 1}"></div>`
-            bees += bee
-        }
-        document.body.innerHTML += bees;
-        function random(min, max) {
-            return Math.random() * (max - min) + min;
-        }
+  function moveBee(bee) {
+      let x = random(0, window.innerWidth);
+      let y = random(0, window.innerHeight);
 
-        function moveBee(bee) {
-            let x = random(0, window.innerWidth);
-            let y = random(0, window.innerHeight);
+      function animate() {
+          x += random(-3, 3);
+          y += random(-3, 3);
 
-            function animate() {
-                x += random(-3, 3);
-                y += random(-3, 3);
+          x = Math.max(0, Math.min(window.innerWidth - 60, x));
+          y = Math.max(0, Math.min(window.innerHeight - 60, y));
 
-                x = Math.max(0, Math.min(window.innerWidth - 60, x));
-                y = Math.max(0, Math.min(window.innerHeight - 60, y));
+          bee.style.transform = `translate(${x}px, ${y}px) rotate(${random(-20, 20)}deg)`;
 
-                bee.style.transform = `translate(${x}px, ${y}px) rotate(${random(-20, 20)}deg)`;
+          requestAnimationFrame(animate);
 
-                requestAnimationFrame(animate);
-            }
+      }
 
-            animate();
-        }
+      animate();
+  }
 
-        // Շարժել բոլոր մեղուները
-        document.querySelectorAll('.bee').forEach(moveBee);
+
+  document.querySelectorAll('.bee').forEach(moveBee);
     </script>
 </body>
 
