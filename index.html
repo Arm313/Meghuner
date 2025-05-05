@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flying Bees</title>
+    <style>
+        @font-face {
+            font-family: "Armenia";
+            src: url(./assets/SHK_Dzeragir.otf);
+        }
+
+        body {
+            /* height: 100vh; */
+            margin: 0;
+            background-color: #fff7c0;
+            overflow: hidden;
+            background: url(./assets/fl.avif);
+            font-family: "Armenia";
+            padding: 20px;
+            display: grid;
+            place-content: center center;
+
+        }
+
+        .bee {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-image: url('./assets/bee.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: transform 0.1s ease;
+
+        }
+
+        .invite {
+            max-width: 900px;
+            padding: 20px 30px;
+            border-radius: 20px;
+            background-color: #fff7c0;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            background-color: rgba(255, 255, 255, 0.4);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            margin-top: 200px;
+        }
+
+        h1 {
+
+            font-size: 30px;
+            color: #646464;
+            line-height: 50px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .invite {
+                margin-top: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invite">
+        <h1>
+            1ե դասարանը սիրով հրավիրում է Ձեզ ներկա գտնվելու «Դեպի երազանք» խորագիրը կրող միջոցառմանը, որը տեղի կունենա
+            մայիսի 20-ին, ժամը՝ 13:00-ին:
+        </h1>
+    </div>
+
+    <script>
+
+        let bees = ""
+        for (let i = 0; i < 15; i++) {
+            let bee = `<div class="bee" id="bee${i + 1}"></div>`
+            bees += bee
+        }
+        document.body.innerHTML += bees;
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function moveBee(bee) {
+            let x = random(0, window.innerWidth);
+            let y = random(0, window.innerHeight);
+
+            function animate() {
+                x += random(-3, 3);
+                y += random(-3, 3);
+
+                x = Math.max(0, Math.min(window.innerWidth - 60, x));
+                y = Math.max(0, Math.min(window.innerHeight - 60, y));
+
+                bee.style.transform = `translate(${x}px, ${y}px) rotate(${random(-20, 20)}deg)`;
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        // Շարժել բոլոր մեղուները
+        document.querySelectorAll('.bee').forEach(moveBee);
+    </script>
+</body>
+
+</html>
