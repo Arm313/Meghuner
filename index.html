@@ -23,7 +23,8 @@
             background-color: #fff7c0;
             overflow-x: hidden;
             background: url(./assets/fl.jpg);
-            background-size: cover;
+            background-size: 300px;
+
             font-family: "Armenia";
             padding: 30px;
             display: flex;
@@ -47,6 +48,7 @@
             background-size: contain;
             background-repeat: no-repeat;
             transition: transform 0.1s ease;
+            z-index: 999;
         }
 
         .invite {
@@ -144,19 +146,27 @@
             align-items: center;
             min-width: 100px;
         }
+
+        .top {
+            height: 100vh;
+        }
     </style>
 </head>
 
 <body>
     <main>
-        <div class="invite">
-            <h1>
-                <span class="one">1</span>ե դասարանը սիրով հրավիրում է Ձեզ ներկա գտնվելու «Դեպի երազանք» խորագիրը կրող
-                միջոցառմանը, որը տեղի կունենա մայիսի 20-ին, ժամը՝ 13:00-ին:
-            </h1>
+        <div class="top">
+            <div class="invite">
+                <h1>
+                    <span class="one">1</span>ե դասարանը սիրով հրավիրում է Ձեզ ներկա գտնվելու «Դեպի երազանք»
+                    խորագիրը
+                    կրող
+                    միջոցառմանը, որը տեղի կունենա մայիսի 20-ին, ժամը՝ 13:00-ին:
+                </h1>
+            </div>
         </div>
 
-        <div id="bees-container" style="flex: 1; position: relative; min-height: 300px;"></div>
+        <!-- <div id="bees-container" style="flex: 1; position: relative;"></div> -->
         <div class="countdown-container">
             <div class="countdownBox">
                 <h2 class="countdown-title" id="countdown-title">Միջոցառմանը մնաց՝</h2>
@@ -175,6 +185,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
 
@@ -213,17 +224,17 @@
             updateCountdown();
         });
         let bees = ""
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 5; i++) {
             let bee = `<div class="bee" id="bee${i + 1}"></div>`
             bees += bee
         }
-        document.body.innerHTML += bees;
+        document.querySelector("body").innerHTML += bees;
         function random(min, max) {
             return Math.random() * (max - min) + min;
         }
 
         function moveBee(bee) {
-            let x = random(0, window.innerWidth);
+            let x = random(0, window.innerWidth) - 100;
             let y = random(0, window.innerHeight);
 
             function animate() {
